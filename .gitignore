@@ -1,0 +1,5 @@
+nbproject
+.settings
+wp-content/uploads/*
+readme.html
+wp-config.php
