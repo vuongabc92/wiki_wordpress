@@ -131,7 +131,7 @@
     </div><!--/price-range-->
 
     <div class="shipping text-center"><!--shipping-->
-        <img src="<?php echo $template_uri; ?>/images/home/shipping.jpg" alt="" />
+        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/home/shipping.jpg" alt="" />
     </div><!--/shipping-->
 
 </div>

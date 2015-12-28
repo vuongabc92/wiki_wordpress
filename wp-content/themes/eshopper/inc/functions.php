@@ -5,8 +5,7 @@ if ( ! function_exists('eshopper_setup') ) :
     /**
      * Sets up theme defaults and registers support for various WordPress features.
      */
-    function eshopper_setup()
-    {
+    function eshopper_setup() {
 
         /*
          * Make theme available for translation.
@@ -68,12 +67,12 @@ if ( ! function_exists('eshopper_widgets_init') ) :
 
 endif; // eshopper_widgets_init
 
-if ( ! function_exists('register_main_menus') ) :
+if ( ! function_exists('eshopper_register_main_menus') ) :
 
     /**
      * Register menus
      */
-    function register_main_menus() {
+    function eshopper_register_main_menus() {
         register_nav_menus(
             array(
                 'primary-nav'  => __( 'Primary navigation menus', ESHOPPER )
@@ -81,6 +80,54 @@ if ( ! function_exists('register_main_menus') ) :
         );
     }
 
-    add_action( 'init', 'register_main_menus' );
+    add_action( 'init', 'eshopper_register_main_menus' );
 
-endif; // eshopper_widgets_init
+endif; // eshopper_register_main_menus
+
+
+if ( ! function_exists('eshopper_get_social_networking') ) :
+
+    /**
+     * Get social networking info
+     *
+     * @return array
+     */
+    function eshopper_get_social_networking() {
+
+        $social_networking_page_id        = eshopper_get_page_id_by_slug(ESHOPPER_SOCIAL_NETWORKING_SLUG);
+        $social_networking                = new stdClass();
+        $social_networking->phone_number  = CFS()->get( 'es_social_phone_number', $social_networking_page_id );
+        $social_networking->email_address = CFS()->get( 'es_social_email_address', $social_networking_page_id );
+        $social_networking->facebook      = CFS()->get( 'es_social_facebook', $social_networking_page_id );
+        $social_networking->twitter       = CFS()->get( 'es_social_twitter', $social_networking_page_id );
+        $social_networking->linkedin     = CFS()->get( 'es_social_linkedin', $social_networking_page_id );
+        $social_networking->google_plus   = CFS()->get( 'es_social_google_plus', $social_networking_page_id );
+        $social_networking->dribbble      = CFS()->get( 'es_social_dribbble', $social_networking_page_id );
+
+        return $social_networking;
+    }
+
+endif; // eshopper_get_social_networking
+
+
+if ( ! function_exists( 'eshopper_get_page_id_by_slug' ) ) :
+
+    /**
+     * Get page id by page slug
+     *
+     * @param string $page_slug
+     *
+     * @return int|null Page id if exists and null for the otherwise
+     */
+    function eshopper_get_page_id_by_slug( $page_slug ) {
+
+        $page = get_page_by_path( $page_slug );
+
+	if ( $page ) {
+            return $page->ID;
+	} else {
+            return null;
+	}
+    }
+
+endif; // eshopper_get_page_id_by_slug
