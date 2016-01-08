@@ -117,6 +117,20 @@ function eshopper_widgets_init() {
 add_action( 'widgets_init', 'eshopper_widgets_init' );
 
 /**
+ * Register menus
+ */
+function eshopper_register_menus() {
+    register_nav_menus(
+        array(
+            'primary-nav' => __( 'Primary navigation menus', THEME_NAME ),
+            'extra-nav'   => __( 'Extra navigation menus', THEME_NAME )
+        )
+    );
+}
+
+add_action( 'init', 'eshopper_register_menus' );
+
+/**
  * Enqueue scripts and styles.
  */
 function eshopper_scripts() {
