@@ -1,6 +1,10 @@
 <?php
+/**
+ * Defines all contants.
+ *
+ * @package Eshopper
+ */
 
-define('ESHOPPER', 'eshopper');
-
-// Page slug
-define('ESHOPPER_SOCIAL_NETWORKING_SLUG', 'social-networking');
+define( 'THEME_NAME', 'eshopper' );
+define( 'THEME_DIR', get_template_directory() );
+define( 'THEME_URL', get_template_directory_uri() );

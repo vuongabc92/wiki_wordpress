@@ -1,7 +1,15 @@
 <?php
+/**
+ * The home template file.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Eshopper
+ */
+
 get_header();
-include_once $template_path . '/templates/header.php';
-include_once $template_path . '/templates/home/slider.php';
-include_once $template_path . '/templates/home/products.php';
-include_once $template_path . '/templates/footer.php';
+include THEME_DIR . '/template-parts/block-header.php';
+include THEME_DIR . '/template-parts/home-page/block-slider.php';
+include THEME_DIR . '/template-parts/home-page/block-product.php';
+include THEME_DIR . '/template-parts/block-footer.php';
 get_footer();
