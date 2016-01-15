@@ -104,8 +104,8 @@ add_action( 'after_setup_theme', 'eshopper_content_width', 0 );
  */
 function eshopper_widgets_init() {
     register_sidebar(array(
-        'name'          => esc_html__( 'Sidebar', THEME_NAME ),
-        'id'            => 'sidebar-1',
+        'name'          => esc_html__( 'Sidebar Category', THEME_NAME ),
+        'id'            => 'category-sidebar',
         'description'   => '',
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
@@ -150,7 +150,7 @@ add_action( 'wp_enqueue_scripts', 'eshopper_scripts' );
 /**
  * Get social networking
  *
- * @return array list social onfo
+ * @return array list social info
  */
 function eshopper_get_social_networking() {
 
@@ -179,3 +179,55 @@ function eshopper_get_logo_src() {
 
     return isset( $eshopper_options['logo']['url'] ) ? $eshopper_options['logo']['url'] : '';
 }
+
+/**
+ * Get price range option
+ *
+ * @global type $eshopper_options
+ *
+ * @return array
+ */
+function eshopper_get_price_range() {
+
+    global $eshopper_options;
+
+    return array(
+        'min'     => isset( $eshopper_options['price-range-min'] )     ? $eshopper_options['price-range-min']     : '',
+        'max'     => isset( $eshopper_options['price-range-max'] )     ? $eshopper_options['price-range-max']     : '',
+        'default' => isset( $eshopper_options['price-range-default'] ) ? $eshopper_options['price-range-default'] : '',
+        'step'    => isset( $eshopper_options['price-range-step'] )    ? $eshopper_options['price-range-step'] : ''
+    );
+}
+
+/**
+ * Get all sliders or get slider by options
+ *
+ * @param array $options
+ *
+ * @return array|null
+ */
+function eshopper_get_carousel( $options = array() ) {
+
+    $args = array(
+        'post_type'      => CUSTOM_POST_TYPE_CAROUSEL,
+	'posts_per_page' => -1,
+	'offset'         => 0,
+        'orderby'        => 'date',
+	'order'          => 'ASC',
+	'post_status'    => 'publish',
+    );
+
+    $carousel = get_posts( $args );
+
+    return ( count( $carousel ) ) ? $carousel : null;
+}
+
+/**
+ * Add shortcode eshopper [eshopper]
+ *
+ * @return string
+ */
+function eshopper_add_shortcode_eshopper() {
+    return '<span>E</span>-SHOPPER';
+}
+add_shortcode( 'eshopper', 'eshopper_add_shortcode_eshopper' );

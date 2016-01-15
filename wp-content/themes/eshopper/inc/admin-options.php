@@ -186,3 +186,35 @@ Redux::setSection($opt_name, array(
         ),
     )
 ));
+
+Redux::setSection($opt_name, array(
+    'title'  => __( 'Price Range', THEME_NAME ),
+    'id'     => 'price-range',
+    'icon'   => 'el el-tag',
+    'fields' => array(
+        array(
+            'id'    => 'price-range-min',
+            'type'  => 'text',
+            'title' => __( 'Min', THEME_NAME ),
+        ),
+
+        array(
+            'id'    => 'price-range-max',
+            'type'  => 'text',
+            'title' => __( 'Max', THEME_NAME ),
+        ),
+
+        array(
+            'id'      => 'price-range-default',
+            'type'    => 'text',
+            'title'   => __( 'Default ([min,max])', THEME_NAME ),
+            'default' => '[250, 450]'
+        ),
+
+        array(
+            'id'    => 'price-range-step',
+            'type'  => 'text',
+            'title' => __( 'Step', THEME_NAME ),
+        ),
+    )
+));
